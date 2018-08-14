@@ -1,0 +1,43 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>CorsWeb</title>
+  <base href="/">
+
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="icon" type="image/x-icon" href="favicon.ico">
+
+  <script
+  src="https://code.jquery.com/jquery-3.3.1.js"
+  integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60="
+  crossorigin="anonymous"></script>
+</head>
+<body>
+  <script>
+    $(function(){
+      const url = 'https://yourownendpoint.execute-api.us-west-2.amazonaws.com/Prod/hello';
+      $.get(url + '?name=hello789')
+        .done(function(data){
+          console.log(data);
+        })
+        .fail(function(err) {
+          console.error(err);
+        });
+
+      $.ajax({
+        type: "POST",
+        url: url,
+        data: JSON.stringify({"name": "hello 456"}),
+    		contentType: "application/json; charset=utf-8",
+        success: function(data, status, xhr) {
+          console.log(data);
+          console.log(status);
+          console.log(xhr);
+        },
+        dataType: 'json'
+      });
+    });
+  </script>
+</body>
+</html>
